@@ -1,0 +1,91 @@
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection{
+  color: var(--color-light-primary);
+  background: var(--color-blue);
+}
+
+.carrois-gothic-regular {
+  font-family: "Carrois Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face{
+    font-family: FantasqueSansMono;
+    src: url('./assets/FantasqueSansMono-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+:root {
+  font-family: "Carrois Gothic", system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.02rem;
+
+  color-scheme: light dark;
+  background-color: #141617;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  --color-darkest: #141617;
+  --color-dark-primary: #1d2021;
+  --color-dark-secondary: #343434;
+  --color-dark-tertiary: #3c3836;
+  --color-light-primary: #EBE1D3;
+  --color-light-secondary:#BCB4A9;
+  --color-light-tertiary: #64605A;
+  --color-brown: #312616;
+  --color-red: #BB4D3A;
+  --color-red-dark: #743327;
+  --color-blue: #689A9D;
+  --color-blue-dark: #557C7E;
+  color: var(--color-light-primary);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-blue);
+  transition: all 100ms ease-in-out;
+  text-decoration: underline dotted 0rem transparent;
+}
+
+a:hover {
+  color: var(--color-blue);
+  text-decoration: underline dotted 0.15rem currentColor;
+}
+
+#app {
+  text-align: center;
+}
+
