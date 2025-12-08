@@ -12,9 +12,14 @@
             <div style="display: flex; flex-direction: column; padding-top: 0.5rem">
                 <h1>Plectrm</h1>
                 <p style="width: 11rem; padding: 0 0.3rem">is a Free, Open-source ASCII (Guitar) Tab editor.</p>
-                <a style="margin-top: auto;" href="https://github.com/plectrm/plectrm/releases">
+                <a style="margin-top: auto; margin-bottom: 0.5rem;" href="https://github.com/plectrm/plectrm/">
                     <button style="width: 11rem;">
-                        <div>Available for Windows, MacOS, and Linux</div><div class="icon"><ExternalLink></ExternalLink></div>
+                        <div>Repository</div><div class="icon"><ExternalLink></ExternalLink></div>
+                    </button>
+                </a>
+                <a href="https://github.com/plectrm/plectrm/releases">
+                    <button style="width: 11rem;" class="download">
+                        <div>Download Latest</div><div class="icon"><ExternalLink></ExternalLink></div>
                     </button>
                 </a>
             </div>
@@ -58,9 +63,9 @@
     }
 
     div .a{
-        background-color: color-mix(in srgb, var(--color-dark-primary), transparent 10%);
+        background-color: color-mix(in srgb, var(--color-dark-primary), transparent 3%);
         backdrop-filter: blur(4px);
-        border: 1px solid var(--color-dark-secondary);
+        border: 1px solid var(--color-dark-tertiary);
         width: fit-content;
         max-width: 90vw;
         height: fit-content;
@@ -71,6 +76,12 @@
         flex-direction: row;
         justify-content: center;
         text-align: left;
+        transition: all 100ms ease-in-out;
+    }
+
+    div .a:hover{
+        background-color: color-mix(in srgb, var(--color-dark-primary), transparent 0%);
+        backdrop-filter: blur(10px);
     }
 
     :global(#logo){
@@ -79,22 +90,32 @@
 
     button{
         font-family: "Carrois Gothic";
-        background-color: var(--color-blue);
-        border: 1px solid var(--color-dark-secondary);
+        background-color: var(--color-dark-secondary);
+        outline: 1px solid var(--color-dark-tertiary);
+        border: 0;
         padding: 0.5rem;
-        outline: 0px;
         border-radius: 0.5rem;
         cursor: pointer;
         position: relative;
+        transition: all 100ms ease-in-out;
+    }
+
+    button.download{
+        background-color: var(--color-blue);
+    }
+
+    button:hover{
+        outline-offset: 3px;
     }
 
     button div:not(.icon){
         transition: all 100ms ease-in-out;
-        font-size: medium;
+        font-size: large;
         text-align: left;
         mask-image: linear-gradient(to right, black 60%, transparent 80%);
         -webkit-mask-image: linear-gradient(to right, black 60%, transparent 80%);
         mask-size: 200%;
+        color: var(--color-light-primary);
     }
 
     button:hover div:not(.icon){
@@ -106,7 +127,11 @@
         clip-path: rect(0 100% 100% 0%);
     }
 
-    button:active{
+    button:not(.download):active{
+        background-color: var(--color-dark-tertiary);
+    }
+
+    button.download:active{
         background-color: var(--color-blue-dark);
     }
 
@@ -114,7 +139,8 @@
         color: var(--color-light-primary);
         width: 1.5rem;
         position: absolute;
-        top: calc(0% + 0.5rem);
+        height: 100%;
+        top: calc(0% - 0.5rem);
         right: 0%;
         margin: 0.5rem;
         transition: all 100ms ease-in-out;
