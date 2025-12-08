@@ -38,14 +38,15 @@
 <style>
     #contents{
         margin: 0 auto;
-        width: 60vw;
-        height: 100vh;
+        width: 90vw;
+        height: fit-content;
         background-color: var(--color-darkest);
         padding: 10vh 0;
         display: flex;
         flex-direction: column;
         gap: 2rem;
         align-items: center;
+        justify-content: center;
     }
 
     .bento{
@@ -84,5 +85,11 @@
     #heart:active{
         transform: scale(1.1);
         color: var(--color-red-dark);
+    }
+
+    @media (min-width: 1150px) {
+        #contents {
+            width: 60vw;
+        }
     }
 </style>

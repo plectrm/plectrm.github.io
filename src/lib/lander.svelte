@@ -62,10 +62,11 @@
         backdrop-filter: blur(4px);
         border: 1px solid var(--color-dark-secondary);
         width: fit-content;
+        max-width: 90vw;
         height: fit-content;
         border-radius: 1rem;
-        padding: 2rem;
-        gap: 2rem;
+        padding: 1rem;
+        gap: 1rem;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -123,5 +124,12 @@
 
     p {
         font-size: small;
+    }
+
+    @media (min-width: 1150px) {
+        div .a{
+            padding: 2rem;
+            gap: 2rem;
+        }
     }
 </style>

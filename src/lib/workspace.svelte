@@ -12,8 +12,8 @@
         overflow: hidden;
     }
     #workspace{
-        width: 70vw;
-        height: 150vh;
+        width: 95vw;
+        height: 90vh;
         border-radius: 2rem;
         padding: 1rem;
         background-color: var(--color-light-primary);
@@ -23,10 +23,16 @@
                     filter 0.2s ease-out;
         filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
         margin: auto;
-        margin-top: 50%;
+        margin-top: 10vh;
         font-size: 1rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    @media (min-width: 1150px) {
+        #workspace {
+            width: 70vw;
+        }
     }
 </style>
