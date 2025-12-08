@@ -9,10 +9,10 @@
     <div id="lander">
         <div class="a">
             <Logo></Logo>
-            <div style="display: flex; flex-direction: column; padding-top: 0.5rem">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <h1>Plectrm</h1>
                 <p style="width: 11rem; padding: 0 0.3rem">is a Free, Open-source ASCII (Guitar) Tab editor.</p>
-                <a style="margin-top: auto; margin-bottom: 0.5rem;" href="https://github.com/plectrm/plectrm/">
+                <a style="margin-top: auto;" href="https://github.com/plectrm/plectrm/">
                     <button style="width: 11rem;">
                         <div>Repository</div><div class="icon"><ExternalLink></ExternalLink></div>
                     </button>
@@ -49,7 +49,7 @@
         justify-content: center;
         grid-area: inner-div;
         position: sticky;
-        z-index: 1;
+        z-index: 2;
     }
 
     #fade{
@@ -59,7 +59,7 @@
         background: linear-gradient(transparent 0%, transparent 80%, var(--color-darkest) 100%);
         pointer-events: none;
         position: sticky;
-        z-index: 2;
+        z-index: 1;
     }
 
     div .a{
@@ -69,12 +69,14 @@
         width: fit-content;
         max-width: 90vw;
         height: fit-content;
+        min-height: 20rem;
         border-radius: 1rem;
         padding: 1rem;
         gap: 1rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         text-align: left;
         transition: all 100ms ease-in-out;
     }
@@ -85,7 +87,7 @@
     }
 
     :global(#logo){
-        width: 12rem;
+        width: 8rem;
     }
 
     button{
@@ -152,10 +154,16 @@
         font-size: small;
     }
 
-    @media (min-width: 1150px) {
-        div .a{
+    @media (min-width: 520px){
+        div .a {
+            flex-direction: row;
+            align-items: stretch;
             padding: 2rem;
             gap: 2rem;
+        }
+
+        :global(#logo){
+            width: 12rem;
         }
     }
 </style>
