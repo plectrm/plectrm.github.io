@@ -53,6 +53,7 @@
         padding: 1rem;
         border-radius: 0.5rem;
         border: 1px solid var(--color-dark-secondary);
+        background-color: var(--color-dark-primary);
         width: fit-content;
         display: flex;
         flex-direction: column;
@@ -67,7 +68,7 @@
     }
 
     .item:hover{
-        background-color: var(--color-dark-primary);
+        background-color: var(--color-dark-secondary);
     }
 
     #heart{

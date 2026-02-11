@@ -63,11 +63,12 @@ export class DemoWorkspace {
     
     // Demo data configuration
     const demoData = [
+      { type: 'text', content: `My Tab - My band \nby @memrye` },
       { type: 'text', content: 'Intro' },
       { 
         type: 'stave', 
         tuning: ['E', 'A', 'D', 'G', 'B', 'e'],
-        length: 24,
+        length: 38,
         cells: [
           // Pre-fill some cells with example tab data
           // Format: { row: stringIndex (0=high e, 5=low E), col: columnIndex, value: fretNumber }
@@ -84,6 +85,12 @@ export class DemoWorkspace {
           { row: 2, col: 4, value: '0' },
           { row: 1, col: 4, value: '0' },
           { row: 0, col: 4, value: '3' },
+          { row: 5, col: 5, value: '3' },
+          { row: 4, col: 5, value: '2' },
+          { row: 3, col: 5, value: '0' },
+          { row: 2, col: 5, value: '0' },
+          { row: 1, col: 5, value: '0' },
+          { row: 0, col: 5, value: '3' },
           // Slide example
           { row: 5, col: 8, value: '5' },
           { row: 5, col: 9, value: '/' },
@@ -99,15 +106,17 @@ export class DemoWorkspace {
           // Bend example
           { row: 2, col: 22, value: '7' },
           { row: 2, col: 23, value: 'b' },
+          { row: 2, col: 24, value: '9' },
         ]
       },
-      { type: 'text', content: 'Verse' },
+      { type: 'text', content: '' },
       { 
         type: 'stave', 
         tuning: ['E', 'A', 'D', 'G', 'B', 'e'],
         length: 24,
         cells: [] // Empty stave for user to fill in
-      }
+      },
+      { type: 'text', content: 'click stave above and type or use arrow keys to move \ndouble click or press space to change input direction \n\nalt + arrow keys = move without updating direction \nalt + input = enter without moving \nrearrange elements on the page with the drag handle (top left)' },
     ];
     
     // Create components based on demo data

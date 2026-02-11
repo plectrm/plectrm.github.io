@@ -5,86 +5,128 @@
 </script>
 
 <div id="container">
-    <Workspace></Workspace>
+    <div id="gradient-overlay"></div>
     <div id="lander">
-        <div class="a">
-            <Logo></Logo>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <div id="content">
+            <div id="title">
+                <Logo></Logo>
                 <h1>Plectrm</h1>
-                <p style="width: 11rem; padding: 0 0.3rem">is a Free, Open-source ASCII (Guitar) Tab editor.</p>
-                <a style="margin-top: auto;" href="https://github.com/plectrm/plectrm/">
-                    <button style="width: 11rem;">
+                <p>is a Free, Open-source ASCII (Guitar) Tab editor.</p>
+            </div>
+            <div id="links">
+                <a id="repo-link" href="https://github.com/plectrm/plectrm/">
+                    <button>
                         <div>Repository</div><div class="icon"><ExternalLink></ExternalLink></div>
                     </button>
                 </a>
-                <a href="https://github.com/plectrm/plectrm/releases">
-                    <button style="width: 11rem;" class="download">
-                        <div>Download Latest</div><div class="icon"><ExternalLink></ExternalLink></div>
+                <a id="download-link" href="https://github.com/plectrm/plectrm/releases">
+                    <button class="download">
+                        <div>Download</div><div class="icon"><ExternalLink></ExternalLink></div>
                     </button>
                 </a>
             </div>
         </div>
+        <a id="arrow" title="Read more" href="#contents">
+            <span>Read more</span>
+            <svg fill="currentColor" width="24" height="24" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path class="clr-i-outline clr-i-outline-path-2" d="M29,30.41a1,1,0,0,1-.71-.29L18,19.83,7.71,30.12a1,1,0,0,1-1.41-1.41L18,17,29.71,28.71A1,1,0,0,1,29,30.41Z"></path>
+                <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
+            </svg>
+        </a>
     </div>
-    <div id="fade"></div>
+    <Workspace></Workspace>
 </div>
 
 <style>
     #container{
         width: 100vw;
-        height: calc(100vh - 2rem);
-        background-color: var(--color-dark-primary);
+        height: 100vh;
         display: grid;
-        place-items: center;
-        grid-template-areas: "inner-div";
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 100%;
         overflow: hidden;
+        position: relative;
+    }
+
+    #gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 80%, var(--color-darkest) 100%);
+        pointer-events: none;
+        z-index: 5;
     }
 
     #lander{
-        border: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        grid-area: inner-div;
         position: sticky;
         z-index: 2;
-        pointer-events: none;
-    }
-
-    #fade{
-        width: 100%;
-        height: 100%;
-        grid-area: inner-div;
-        background: linear-gradient(transparent 0%, transparent 80%, var(--color-darkest) 100%);
-        pointer-events: none;
-        position: sticky;
-        z-index: 1;
-    }
-
-    div .a{
-        background-color: color-mix(in srgb, var(--color-dark-primary), transparent 3%);
+        background-color: var(--color-dark-primary);
         backdrop-filter: blur(4px);
         border: 1px solid var(--color-dark-tertiary);
-        width: fit-content;
+        width: 100%;
+        height: 100%;
         max-width: 90vw;
-        height: fit-content;
         min-height: 20rem;
         border-radius: 1rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: 0;
         padding: 1rem;
-        gap: 1rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        text-align: left;
+        text-align: center;
         transition: all 100ms ease-in-out;
     }
 
-    div .a:hover{
-        background-color: color-mix(in srgb, var(--color-dark-primary), transparent 0%);
-        backdrop-filter: blur(10px);
+    #content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    #title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #title p {
+        width: 100%;
+    }
+
+    #links{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    #arrow{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        color: var(--color-light-tertiary);
+        padding: 4rem 0;
+        flex-shrink: 0;
+    }
+
+    #arrow:hover{
+        color: var(--color-light-secondary);
+    }
+
+    #arrow:active{
+        color: var(--color-blue);
+    }
+
+    #arrow svg{
+        transform: rotate(180deg);
     }
 
     :global(#logo){
@@ -96,7 +138,7 @@
         background-color: var(--color-dark-secondary);
         outline: 1px solid var(--color-dark-tertiary);
         border: 0;
-        padding: 0.5rem;
+        padding: 0.5rem 1.5rem;
         border-radius: 0.5rem;
         cursor: pointer;
         position: relative;
@@ -108,13 +150,17 @@
     }
 
     button:hover{
-        outline-offset: 3px;
+        background-color: var(--color-dark-tertiary);
+    }
+
+    button.download:hover{
+        background-color: var(--color-blue-dark);
     }
 
     button div:not(.icon){
         transition: all 100ms ease-in-out;
-        font-size: large;
-        text-align: left;
+        font-size: x-large;
+        text-align: center;
         mask-image: linear-gradient(to right, black 60%, transparent 80%);
         -webkit-mask-image: linear-gradient(to right, black 60%, transparent 80%);
         mask-size: 200%;
@@ -130,12 +176,8 @@
         clip-path: rect(0 100% 100% 0%);
     }
 
-    button:not(.download):active{
-        background-color: var(--color-dark-tertiary);
-    }
-
-    button.download:active{
-        background-color: var(--color-blue-dark);
+    button:active{
+        outline: 1px solid var(--color-light-tertiary);
     }
 
     button .icon{
@@ -155,16 +197,103 @@
         font-size: small;
     }
 
-    @media (min-width: 520px){
-        div .a {
-            flex-direction: row;
-            align-items: stretch;
-            padding: 2rem;
-            gap: 2rem;
+    /* mobile layout: horizontal bar with logo -> h1 -> download button */
+    @media (max-width: 768px) {
+        #container {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            overflow-y: auto;
         }
 
+        #lander {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            min-height: auto;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid var(--color-dark-tertiary);
+            padding: 0.5rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        #content {
+            display: contents;
+        }
+
+        #title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+            order: 1;
+        }
+
+        #title h1 {
+            font-size: 1.5rem;
+        }
+
+        #title p {
+            display: none;
+        }
+
+        #links {
+            display: contents;
+        }
+
+        #download-link {
+            order: 2;
+        }
+
+        :global(#logo) {
+            width: 2.5rem;
+        }
+
+        #repo-link {
+            display: none;
+        }
+
+        #arrow {
+            display: none;
+        }
+
+        button {
+            padding: 0.6rem 1.5rem;
+        }
+
+        button div:not(.icon) {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (min-width: 520px) and (max-width: 768px) {
+        :global(#logo) {
+            width: 3rem;
+        }
+
+        #title {
+            gap: 1rem;
+        }
+
+        #title h1 {
+            font-size: 2rem;
+        }
+
+        button {
+            padding: 0.75rem 1.75rem;
+        }
+
+        button div:not(.icon) {
+            font-size: 1.3rem;
+        }
+    }
+
+    @media (min-width: 769px) {
         :global(#logo){
-            width: 12rem;
+            width: 16rem;
         }
     }
 </style>
