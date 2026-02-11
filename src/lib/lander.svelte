@@ -50,6 +50,7 @@
         grid-area: inner-div;
         position: sticky;
         z-index: 2;
+        pointer-events: none;
     }
 
     #fade{
