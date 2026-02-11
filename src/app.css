@@ -20,6 +20,10 @@
     font-display: swap;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   font-family: "Carrois Gothic", system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -60,7 +64,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 4em;
   line-height: 1.1;
   margin: 0;
 }
@@ -89,3 +93,351 @@ a:hover {
   text-align: center;
 }
 
+/* ========================================
+   Demo Workspace Styles - Adapted from Electron App
+   ======================================== */
+
+.prototypeContainer {
+  position: relative;
+  z-index: auto;
+  background-color: transparent;
+  display: grid;
+  border-radius: 1rem;
+  box-shadow: 0 0 0px rgba(0,0,0,0);
+  transition: all 120ms ease-in-out;
+  padding: 0.5rem;
+  min-height: 1em;
+  width: fit-content;
+  text-align: left;
+  margin: 0em;
+  color: #282828;
+  transform: scale(100%);
+  backdrop-filter: 0;
+  overflow: clip;
+}
+
+.prototypeContainer:hover {
+  outline: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+.prototypeContainer:focus-within {
+  outline: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+.prototypeContainer:is(.focus) {
+  outline: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+.prototypeContainer.dragged {
+  z-index: 50;
+  background-color: rgba(var(--color-light-primary), 0.8);
+  outline: 0;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+  backdrop-filter: saturate(80%) brightness(93%) blur(4px);
+  transition: all 0ms linear;
+}
+
+.prototypeContainer.dragged:not(.dragHandle) div {
+  pointer-events: none;
+}
+
+.prototypeContainer.glowAbove {
+  box-shadow: 0px -4px 6px color-mix(in srgb, var(--color-light-secondary) 50%, transparent);
+  margin-top: 0.5em;
+}
+
+.prototypeContainer.glowBelow {
+  box-shadow: 0px 4px 6px color-mix(in srgb, var(--color-light-secondary) 50%, transparent);
+  margin-bottom: 0.5em;
+}
+
+.prototypeContainer.stave {
+  grid-template-columns: 2em auto;
+}
+
+.prototypeContainer.text {
+  grid-template-columns: 2em auto;
+}
+
+.prototypeContainer:hover .contextMenu,
+.prototypeContainer.dragged .contextMenu,
+.prototypeContainer:is(.focus) .contextMenu {
+  opacity: 100%;
+}
+
+
+.contextMenu {
+  min-height: 1em;
+  height: 100%;
+  width: 2em;
+  overflow: clip;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  opacity: 0%;
+  transition: all 120ms ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  grid-row: 1;
+  grid-column: 1;
+  clip-path: fill-box;
+}
+
+.dragHandle {
+  color: var(--color-light-secondary);
+  width: 2em;
+  min-height: 1em;
+  max-height: 1.5em;
+  height: min(100%, 1.5em);
+  text-align: center;
+  align-content: center;
+  background-color: transparent;
+  user-select: none;
+  cursor: grab;
+  border: 0;
+  transition: all 120ms ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragHandle:hover {
+  color: var(--color-light-tertiary);
+  background-color: var(--color-light-secondary);
+  border: 0;
+}
+
+.dragHandle:active {
+  color: var(--color-light-primary);
+  background-color: var(--color-light-tertiary);
+  border: 0;
+  cursor: grabbing;
+}
+
+.dragHandle.forceActive {
+  color: var(--color-light-primary);
+  background-color: var(--color-light-tertiary);
+  border: 0;
+  cursor: grabbing;
+}
+
+.dragHandle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.deleteButton {
+  color: var(--color-light-secondary);
+  width: 2em;
+  min-height: 1em;
+  max-height: 1.5em;
+  height: min(100%, 1.5em);
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  border: 0;
+  transition: all 120ms ease-in-out;
+  display: none;
+  justify-content: center;
+}
+
+.deleteButton.show {
+  display: flex;
+}
+
+.deleteButton:hover {
+  color: var(--color-light-tertiary);
+  background-color: var(--color-light-secondary);
+}
+
+.deleteButton:active {
+  color: var(--color-light-primary);
+  background-color: var(--color-light-tertiary);
+}
+
+.deleteButton svg {
+  width: 100%;
+  height: 60%;
+}
+
+.staveBox {
+  height: 100%;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: auto auto 0.8rem;
+  grid-template-rows: 100%;
+  align-content: center;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.staveGrid {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  padding: 0.1rem 0 0.1rem 0.2rem;
+  line-height: 1em;
+  white-space: pre;
+  user-select: none;
+  font-size: 1em;
+  letter-spacing: 0.5em;
+  overflow: clip;
+  font-family: 'FantasqueSansMono', monospace;
+}
+
+.cellHighlight {
+  position: absolute;
+  background-color: color-mix(in srgb, var(--color-light-tertiary) 30%, transparent);
+  color: var(--color-light-primary);
+  width: 1em;
+  height: 1em;
+  opacity: 0%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+  letter-spacing: normal;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.staveGrid:hover div.cellHighlight {
+  opacity: 100%;
+}
+
+.cellDirection {
+  position: absolute;
+  background-color: color-mix(in srgb, var(--color-light-tertiary) 30%, transparent);
+  color: var(--color-dark-primary);
+  opacity: 0%;
+  pointer-events: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: normal;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.staveGrid:is(.focus) div.cellDirection {
+  opacity: 100%;
+}
+
+.cellActive {
+  position: absolute;
+  background-color: var(--color-blue);
+  color: var(--color-light-primary);
+  outline: 3px solid var(--color-blue);
+  outline-offset: -1px;
+  width: 1em;
+  height: 1em;
+  opacity: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+  letter-spacing: normal;
+  pointer-events: none;
+  z-index: 3;
+  top: 0;
+  left: 0;
+}
+
+.staveGrid:is(.focus) div.cellActive {
+  opacity: 100%;
+}
+
+.staveTuningContainer {
+  grid-column: 1;
+  grid-row: 1;
+  height: 100%;
+  width: fit-content;
+  padding: 0.1rem 0.1rem;
+  user-select: none;
+  background-color: transparent;
+  align-content: center;
+  font-family: 'FantasqueSansMono', monospace;
+  line-height: 1em;
+  color: var(--color-dark-primary);
+}
+
+.staveEnd {
+  grid-column: 3;
+  grid-row: 1;
+  height: 100%;
+  width: 1em;
+  user-select: none;
+  cursor: col-resize;
+  transition: all 70ms ease-in-out;
+  background-color: transparent;
+  align-content: center;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  font-family: 'FantasqueSansMono', monospace;
+  line-height: 1em;
+  color: var(--color-dark-primary);
+  white-space: wrap;
+  padding-right: 0.2rem;
+}
+
+.staveEnd.focus {
+  background-color: var(--color-light-secondary);
+}
+
+.textBox {
+  margin: 0 0.3rem;
+  font-family: 'FantasqueSansMono', monospace;
+  min-height: 1em;
+  min-width: 8em;
+  background-color: transparent;
+  border: 0px;
+  cursor: text;
+  height: fit-content;
+  align-self: center;
+  line-height: 1.5em;
+  white-space: pre-line;
+  outline: none;
+}
+
+.textBox:empty::before {
+  content: 'type here...';
+  color: var(--color-light-tertiary);
+}
+
+.textBox:focus {
+  outline: none;
+}
+
+.demo-reset-button {
+  position: absolute;
+  top: 1em;
+  right: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--color-light-secondary);
+  color: var(--color-light-secondary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-family: "Carrois Gothic", sans-serif;
+  font-size: 1rem;
+  transition: all 100ms ease-in-out;
+  z-index: 10;
+  opacity: 0;
+}
+
+.demo-reset-button:hover {
+  background-color: var(--color-light-secondary);
+  color: var(--color-light-primary);
+}
+
+#workspace:hover .demo-reset-button {
+  opacity: 1;
+}
