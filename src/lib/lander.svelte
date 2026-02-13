@@ -28,9 +28,9 @@
                             <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm.Setup.${version.slice(1)}.exe`} class="download-btn">
                                 <span>Installer (.exe)</span>
                             </a>
-                            <!-- <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm.${version.slice(1)}.exe`} class="download-btn">
-                                <span>Standalone (.exe)</span>
-                            </a> -->
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm.${version.slice(1)}.zip`} class="download-btn">
+                                <span>Standalone (.zip)</span>
+                            </a>
                         </div>
                     </div>
                     <div class="platform-row">
