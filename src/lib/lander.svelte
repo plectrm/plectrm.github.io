@@ -3,7 +3,7 @@
     import ExternalLink from "./externalLink.svelte";
     import Workspace from "./workspace.svelte";
 
-    const version = "v0.1.0";
+    const version = "v0.1.1";
 </script>
 
 <div id="container">
@@ -36,17 +36,29 @@
                     <div class="platform-row">
                         <span class="platform-name">Linux</span>
                         <div class="download-buttons">
-                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/Plectrm-${version.slice(1)}.AppImage`} class="download-btn">
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm-${version.slice(1)}.AppImage`} class="download-btn">
                                 <span>Standalone (.AppImage)</span>
+                            </a>
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm_${version.slice(1)}_amd64.deb`} class="download-btn">
+                                <span>Standalone (.deb)</span>
                             </a>
                         </div>
                     </div>
                     <div class="platform-row">
                         <span class="platform-name">macOS</span>
                         <div class="download-buttons">
-                            <div class="download-btn disabled">
-                                <span>Coming Soon</span>
-                            </div>
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm-${version.slice(1)}.dmg`} class="download-btn">
+                                <span>Installer (.dmg)</span>
+                            </a>
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm-${version.slice(1)}-mac.zip`} class="download-btn">
+                                <span>Standalone (.zip)</span>
+                            </a>
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm-${version.slice(1)}-arm64.dmg`} class="download-btn">
+                                <span>arm64 Installer (.dmg)</span>
+                            </a>
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm-${version.slice(1)}-arm64-mac.zip`} class="download-btn">
+                                <span>arm64 Standalone (.zip)</span>
+                            </a>
                         </div>
                     </div>
                     <div class="platform-row">
@@ -191,7 +203,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: var(--color-dark-primary);
         border: 1px solid var(--color-dark-tertiary);
         border-radius: 1rem;
@@ -207,7 +219,7 @@
     .platform-list {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 1rem;
         width: 100%;
         text-align: left;
     }
@@ -217,14 +229,28 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 0.75rem;
+        gap: 0.5rem;
+        border: 1px solid var(--color-dark-tertiary);
+        padding: 0.75rem;
+        border-radius: 0;
+    }
+
+    .platform-row:first-of-type{
+        border-radius: 0.75rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .platform-row:last-of-type{
+        border-radius: 0.75rem;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 
     .platform-name {
         font-size: 0.875rem;
         font-weight: 600;
         color: var(--color-light-secondary);
-        text-transform: uppercase;
         letter-spacing: 0.05em;
         min-width: 70px;
     }
@@ -254,7 +280,7 @@
         text-decoration: underline dotted 0.15rem currentColor
     }
 
-    .download-btn.disabled{
+    /* .download-btn.disabled{
         display: inline-block;
         padding: 0.5rem 1rem;
         background-color: var(--color-light-tertiary);
@@ -264,7 +290,7 @@
         font-size: 1rem;
         text-align: center;
         user-select: none;
-    }
+    } */
 
     .older-releases {
         font-size: 0.75rem;
