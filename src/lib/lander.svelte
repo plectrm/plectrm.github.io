@@ -2,6 +2,8 @@
     import Logo from "./logo.svelte";
     import ExternalLink from "./externalLink.svelte";
     import Workspace from "./workspace.svelte";
+
+    const version = "v0.1.0";
 </script>
 
 <div id="container">
@@ -13,17 +15,48 @@
                 <h1>Plectrm</h1>
                 <p>is a Free, Open-source ASCII (Guitar) Tab editor.</p>
             </div>
-            <div id="links">
-                <a id="repo-link" href="https://github.com/plectrm/plectrm/">
-                    <button>
-                        <div>Repository</div><div class="icon"><ExternalLink></ExternalLink></div>
-                    </button>
-                </a>
-                <a id="download-link" href="https://github.com/plectrm/plectrm/releases">
-                    <button class="download">
-                        <div>Download</div><div class="icon"><ExternalLink></ExternalLink></div>
-                    </button>
-                </a>
+            <a id="mobile-repo-link" href="https://github.com/plectrm/plectrm/">
+                <button>
+                    <div>Repository</div><div class="icon"><ExternalLink></ExternalLink></div>
+                </button>
+            </a>
+            <div id="download-section">
+                <div class="platform-list">
+                    <div class="platform-row">
+                        <span class="platform-name">Windows</span>
+                        <div class="download-buttons">
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm.Setup.${version.slice(1)}.exe`} class="download-btn">
+                                <span>Installer (.exe)</span>
+                            </a>
+                            <!-- <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/plectrm.${version.slice(1)}.exe`} class="download-btn">
+                                <span>Standalone (.exe)</span>
+                            </a> -->
+                        </div>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">Linux</span>
+                        <div class="download-buttons">
+                            <a href={`https://github.com/plectrm/plectrm/releases/download/${version}/Plectrm-${version.slice(1)}.AppImage`} class="download-btn">
+                                <span>Standalone (.AppImage)</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">macOS</span>
+                        <div class="download-buttons">
+                            <div class="download-btn disabled">
+                                <span>Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="platform-row">
+                        <span class="version-label">{version}</span>
+                        <a href="https://github.com/plectrm/plectrm/releases" class="older-releases">
+                            Previous releases
+                        </a>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <a id="arrow" title="Read more" href="#contents">
@@ -40,7 +73,7 @@
 <style>
     #container{
         width: 100vw;
-        height: 100vh;
+        height: fit-content;
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: 100%;
@@ -101,10 +134,145 @@
         width: 100%;
     }
 
-    #links{
+    #mobile-repo-link {
+        display: none;
+    }
+
+    #mobile-repo-link button {
+        font-family: "Carrois Gothic";
+        background-color: var(--color-dark-secondary);
+        outline: 1px solid var(--color-dark-tertiary);
+        border: 0;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        position: relative;
+        transition: all 100ms ease-in-out;
+    }
+
+    #mobile-repo-link button:hover {
+        background-color: var(--color-dark-tertiary);
+    }
+
+    #mobile-repo-link button div:not(.icon) {
+        transition: all 100ms ease-in-out;
+        font-size: x-large;
+        text-align: center;
+        mask-image: linear-gradient(to right, black 60%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to right, black 60%, transparent 80%);
+        mask-size: 200%;
+        color: var(--color-light-primary);
+    }
+
+    #mobile-repo-link button:hover div:not(.icon) {
+        mask-size: 100%;
+    }
+
+    #mobile-repo-link button:hover .icon {
+        opacity: 100%;
+        clip-path: rect(0 100% 100% 0%);
+    }
+
+    #mobile-repo-link button .icon {
+        color: var(--color-light-primary);
+        width: 1.5rem;
+        position: absolute;
+        height: 100%;
+        top: calc(0% - 0.5rem);
+        right: 0%;
+        margin: 0.5rem;
+        transition: all 100ms ease-in-out;
+        clip-path: rect(0% 100% 100% 100%);
+        opacity: 0%;
+    }
+
+    #download-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        background-color: var(--color-dark-primary);
+        border: 1px solid var(--color-dark-tertiary);
+        border-radius: 1rem;
+        min-width: 280px;
+    }
+
+    .version-label {
+        font-size: 0.875rem;
+        color: var(--color-light-tertiary);
+        font-family: 'FantasqueSansMono', monospace;
+    }
+
+    .platform-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .platform-row {
         display: flex;
         flex-direction: row;
-        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .platform-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--color-light-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 70px;
+    }
+
+    .download-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .download-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--color-blue);
+        color: var(--color-light-primary);
+        text-decoration: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 100ms ease-in-out;
+        text-align: center;
+        text-decoration: underline dotted 0rem transparent;
+    }
+
+    .download-btn:is(:not(.disabled)):hover {
+        text-decoration: underline dotted 0.15rem currentColor
+    }
+
+    .download-btn.disabled{
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--color-light-tertiary);
+        color: var(--color-light-secondary);
+        text-decoration: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        text-align: center;
+        user-select: none;
+    }
+
+    .older-releases {
+        font-size: 0.75rem;
+        color: var(--color-light-tertiary);
+    }
+
+    .older-releases:hover{
+        color: var(--color-light-secondary);
     }
 
     #arrow{
@@ -121,10 +289,6 @@
         color: var(--color-light-secondary);
     }
 
-    #arrow:active{
-        color: var(--color-blue);
-    }
-
     #arrow svg{
         transform: rotate(180deg);
     }
@@ -133,71 +297,11 @@
         width: 8rem;
     }
 
-    button{
-        font-family: "Carrois Gothic";
-        background-color: var(--color-dark-secondary);
-        outline: 1px solid var(--color-dark-tertiary);
-        border: 0;
-        padding: 0.5rem 1.5rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        position: relative;
-        transition: all 100ms ease-in-out;
-    }
-
-    button.download{
-        background-color: var(--color-blue);
-    }
-
-    button:hover{
-        background-color: var(--color-dark-tertiary);
-    }
-
-    button.download:hover{
-        background-color: var(--color-blue-dark);
-    }
-
-    button div:not(.icon){
-        transition: all 100ms ease-in-out;
-        font-size: x-large;
-        text-align: center;
-        mask-image: linear-gradient(to right, black 60%, transparent 80%);
-        -webkit-mask-image: linear-gradient(to right, black 60%, transparent 80%);
-        mask-size: 200%;
-        color: var(--color-light-primary);
-    }
-
-    button:hover div:not(.icon){
-        mask-size: 100%;
-    }
-
-    button:hover .icon{
-        opacity: 100%;
-        clip-path: rect(0 100% 100% 0%);
-    }
-
-    button:active{
-        outline: 1px solid var(--color-light-tertiary);
-    }
-
-    button .icon{
-        color: var(--color-light-primary);
-        width: 1.5rem;
-        position: absolute;
-        height: 100%;
-        top: calc(0% - 0.5rem);
-        right: 0%;
-        margin: 0.5rem;
-        transition: all 100ms ease-in-out;
-        clip-path: rect(0% 100% 100% 100%);
-        opacity: 0%;
-    }
-
     p {
         font-size: small;
     }
 
-    /* mobile layout: horizontal bar with logo -> h1 -> download button */
+    /* mobile layout: horizontal bar with logo -> h1 -> repo button */
     @media (max-width: 768px) {
         #container {
             grid-template-columns: 1fr;
@@ -240,33 +344,37 @@
             display: none;
         }
 
-        #links {
-            display: contents;
+        #download-section {
+            display: none;
         }
 
-        #download-link {
+        #mobile-repo-link {
+            display: block;
             order: 2;
+        }
+
+        #mobile-repo-link button {
+            padding: 0.4rem 1rem;
+        }
+
+        #mobile-repo-link button div:not(.icon) {
+            font-size: 1rem;
+        }
+
+        #mobile-repo-link button .icon {
+            width: 1rem;
+            top: calc(0% - 0.25rem);
+            margin: 0.25rem;
         }
 
         :global(#logo) {
             width: 2.5rem;
         }
 
-        #repo-link {
-            display: none;
-        }
-
         #arrow {
             display: none;
         }
 
-        button {
-            padding: 0.6rem 1.5rem;
-        }
-
-        button div:not(.icon) {
-            font-size: 1.2rem;
-        }
     }
 
     @media (min-width: 520px) and (max-width: 768px) {
@@ -282,12 +390,12 @@
             font-size: 2rem;
         }
 
-        button {
-            padding: 0.75rem 1.75rem;
+        #mobile-repo-link button {
+            padding: 0.5rem 1.25rem;
         }
 
-        button div:not(.icon) {
-            font-size: 1.3rem;
+        #mobile-repo-link button div:not(.icon) {
+            font-size: 1.2rem;
         }
     }
 
