@@ -38,10 +38,13 @@
         position: sticky;
         z-index: 0;
         overflow: hidden;
+        padding: 2rem;
+        padding-bottom: 0;
+
     }
     #workspace{
-        width: 95%;
-        height: 95vh;
+        width: 100%;
+        height: 100vh;
         border-radius: 2rem;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -51,8 +54,6 @@
         box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
         transition: box-shadow 0.1s ease-in-out,
                     filter 0.2s ease-out;
-        margin: auto;
-        margin-top: 5vh;
         font-size: 1rem;
         display: flex;
         flex-direction: column;
